@@ -80,8 +80,8 @@ class SequenceIdentitySequence extends SqfEntitySequenceBase {
 // END SEQUENCES
 
 // BEGIN DATABASE MODEL
-class LoyaltyDBModel extends SqfEntityModelProvider {
-  LoyaltyDBModel() {
+class AgrotechDBModel extends SqfEntityModelProvider {
+  AgrotechDBModel() {
     databaseName = dbModel.databaseName;
     password = dbModel.password;
     dbVersion = dbModel.dbVersion;
@@ -543,12 +543,12 @@ class Account {
   static Future<List<dynamic>> saveAll(List<Account> accounts) async {
     // final results = _mnAccount.saveAll('INSERT OR REPLACE INTO account (id, userId, email, fullName, gender, address, phone, birthDate, city, zipCode, isActive, idDoku, whatsAppNumber, loginCheck, deviceLoyalty, createDate)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',accounts);
     // return results; removed in sqfentity_gen 1.3.0+6
-    await LoyaltyDBModel().batchStart();
+    await AgrotechDBModel().batchStart();
     for (final obj in accounts) {
       await obj.save();
     }
-    //    return LoyaltyDBModel().batchCommit();
-    final result = await LoyaltyDBModel().batchCommit();
+    //    return AgrotechDBModel().batchCommit();
+    final result = await AgrotechDBModel().batchCommit();
     for (int i = 0; i < accounts.length; i++) {
       if (accounts[i].id == null) {
         accounts[i].id = result[i] as int;
@@ -1529,7 +1529,7 @@ class AccountFields {
 //region AccountManager
 class AccountManager extends SqfEntityProvider {
   AccountManager()
-      : super(LoyaltyDBModel(),
+      : super(AgrotechDBModel(),
             tableName: _tableName,
             primaryKeyList: _primaryKeyList,
             whereStr: _whereStr);
@@ -1544,7 +1544,7 @@ class IdentitySequence {
   /// Assigns a new value when it is triggered and returns the new value
   /// returns Future<int>
   Future<int> nextVal([VoidCallback Function(int o) nextval]) async {
-    final val = await LoyaltyDBModelSequenceManager()
+    final val = await AgrotechDBModelSequenceManager()
         .sequence(SequenceIdentitySequence.getInstance, true);
     if (nextval != null) {
       nextval(val);
@@ -1555,7 +1555,7 @@ class IdentitySequence {
   /// Get the current value
   /// returns Future<int>
   Future<int> currentVal([VoidCallback Function(int o) currentval]) async {
-    final val = await LoyaltyDBModelSequenceManager()
+    final val = await AgrotechDBModelSequenceManager()
         .sequence(SequenceIdentitySequence.getInstance, false);
     if (currentval != null) {
       currentval(val);
@@ -1566,7 +1566,7 @@ class IdentitySequence {
   /// Reset sequence to start value
   /// returns start value
   Future<int> reset([VoidCallback Function(int o) currentval]) async {
-    final val = await LoyaltyDBModelSequenceManager()
+    final val = await AgrotechDBModelSequenceManager()
         .sequence(SequenceIdentitySequence.getInstance, false, reset: true);
     if (currentval != null) {
       currentval(val);
@@ -1577,7 +1577,7 @@ class IdentitySequence {
 
 /// End Region SEQUENCE IdentitySequence
 
-class LoyaltyDBModelSequenceManager extends SqfEntityProvider {
-  LoyaltyDBModelSequenceManager() : super(LoyaltyDBModel());
+class AgrotechDBModelSequenceManager extends SqfEntityProvider {
+  AgrotechDBModelSequenceManager() : super(AgrotechDBModel());
 }
 // END OF ENTITIES

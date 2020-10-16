@@ -31,8 +31,8 @@ const seqIdentity = SqfEntitySequence(
 
 @SqfEntityBuilder(dbModel)
 const dbModel = SqfEntityModel(
-    modelName: 'LoyaltyDBModel',
-    databaseName: 'loyalty_dk.db',
+    modelName: 'AgrotechDBModel',
+    databaseName: 'agrotech.db',
     databaseTables: [accountTable],
     sequences: [seqIdentity],
     bundledDatabasePath: null);
