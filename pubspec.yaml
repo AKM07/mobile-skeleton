@@ -32,6 +32,9 @@ dependencies:
   feather_icons_flutter: 4.7.4
   fluttertoast: ^7.0.4
   flutter_svg: ^0.19.0
+  intl: ^0.16.1
+  url_launcher: ^5.7.10
+  flutter_local_notifications: ^3.0.1+6
 
   #networking
   dio: ^3.0.8
@@ -40,13 +43,20 @@ dependencies:
   equatable: ^1.0.0
   rxdart: ^0.23.1
   get_it: ^3.0.3
+  http: any
+  ftpconnect: ^0.2.1
+  firebase_core: ^0.5.2
+  firebase_messaging: ^7.0.3
+  firebase_auth: ^0.18.3+1
+  firebase_analytics: ^6.3.0
+  connectivity: ^2.0.2
 
   #architecture
   flutter_bloc: ^3.1.0
 
   #sqlite
-  sqfentity:
-  sqfentity_gen:
+  sqfentity: ^1.4.0+3
+  sqfentity_gen: ^1.4.0+2
   path_provider: any
 
   logger: any
@@ -60,6 +70,12 @@ dev_dependencies:
   test_coverage: ^0.4.0
   bloc_test: ^3.0.0
   mockito: ^4.1.1
+  flutter_launcher_icons: ^0.8.1
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/dummy_launcher.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -89,6 +105,22 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
+  fonts:
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/nunito-sans/NunitoSans-Regular.ttf
+        - asset: assets/fonts/nunito-sans/NunitoSans-Bold.ttf
+        - asset: assets/fonts/nunito-sans/NunitoSans-SemiBold.ttf
+        - asset: assets/fonts/nunito-sans/NunitoSans-ExtraBold.ttf
+    - family: NotoSerifKR
+      fonts:
+        - asset: assets/fonts/noto-serif/NotoSerifKR-Regular.otf
+        - asset: assets/fonts/noto-serif/NotoSerifKR-Bold.otf
+        - asset: assets/fonts/noto-serif/NotoSerifKR-Black.otf
+        - asset: assets/fonts/noto-serif/NotoSerifKR-Light.otf
+        - asset: assets/fonts/noto-serif/NotoSerifKR-ExtraLight.otf
+        - asset: assets/fonts/noto-serif/NotoSerifKR-Medium.otf
+        - asset: assets/fonts/noto-serif/NotoSerifKR-SemiBold.otf
   # example:
   # fonts:
   #   - family: Schyler
