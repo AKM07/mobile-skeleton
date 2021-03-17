@@ -107,7 +107,7 @@ class LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         Image.asset(
-                          "assets/images/dragon_logo_white.png",
+                          "assets/images/dummy_launcher.png",
                           height: 150,
                           width: 150,
                         ),
