@@ -4,7 +4,8 @@ import 'package:dio/dio.dart';
 
 class LoggingInterceptors extends Interceptor {
   @override
-  Future<FutureOr> onRequest(RequestOptions options) async {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    super.onRequest(options, handler);
     print(
         "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
     print("Headers:");
@@ -18,26 +19,26 @@ class LoggingInterceptors extends Interceptor {
     }
     print(
         "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
-
-    return options;
   }
 
   @override
-  Future<FutureOr> onError(DioError dioError) async {
+  void onError(DioError dioError, ErrorInterceptorHandler handler) {
     print(
-        "<-- ${dioError.message} ${(dioError.response?.request != null ? (dioError.response.request.baseUrl + dioError.response.request.path) : 'URL')}");
+        "<-- ${dioError.message} ${(dioError.response?.requestOptions != null ? (dioError.response.requestOptions.baseUrl + dioError.response.requestOptions.path) : 'URL')}");
     print(
         "${dioError.response != null ? dioError.response.data : 'Unknown Error'}");
     print("<-- End error");
+    super.onError(dioError, handler);
   }
 
   @override
-  Future<FutureOr> onResponse(Response response) async {
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
     print(
-        "<-- ${response.statusCode} ${(response.request != null ? (response.request.baseUrl + response.request.path) : 'URL')}");
+        "<-- ${response.statusCode} ${(response.requestOptions != null ? (response.requestOptions.baseUrl + response.requestOptions.path) : 'URL')}");
     print("Headers:");
     response.headers?.forEach((k, v) => print('$k: $v'));
     print("Response: ${response.data}");
     print("<-- END HTTP");
+    super.onResponse(response, handler);
   }
 }

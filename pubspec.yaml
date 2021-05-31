@@ -37,22 +37,18 @@ dependencies:
   flutter_local_notifications: ^3.0.1+6
 
   #networking
-  dio: ^3.0.8
+  dio: ^4.0.0
   shared_preferences: ^0.5.5
   json_annotation: ^3.0.1
   equatable: ^1.0.0
   rxdart: ^0.23.1
   get_it: ^3.0.3
   http: any
-  ftpconnect: ^0.2.1
-  firebase_core: ^0.5.2
-  firebase_messaging: ^7.0.3
-  firebase_auth: ^0.18.3+1
-  firebase_analytics: ^6.3.0
+
   connectivity: ^2.0.2
 
   #architecture
-  flutter_bloc: ^3.1.0
+  flutter_bloc: ^7.0.1
 
   #sqlite
   sqfentity: ^1.4.0+3
@@ -68,7 +64,7 @@ dev_dependencies:
   json_serializable: ^3.2.3
   build_runner: ^1.7.2
   test_coverage: ^0.4.0
-  bloc_test: ^3.0.0
+  bloc_test: ^8.0.1
   mockito: ^4.1.1
   flutter_launcher_icons: ^0.8.1
 

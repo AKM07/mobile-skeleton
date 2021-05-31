@@ -5,8 +5,10 @@ import 'package:mobile_skeleton/bloc/LoginBloc.dart';
 import 'package:mobile_skeleton/model/LoadApiStatus.dart';
 import 'package:mobile_skeleton/model/response/BaseResponse.dart';
 import 'package:mobile_skeleton/model/response/LoginResponse.dart';
+import 'package:mobile_skeleton/pages/DashboardPage.dart';
 import 'package:mobile_skeleton/utils/SizeUtil.dart';
 
+import '../constants/Constants.dart';
 import '../constants/Constants.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,10 +31,15 @@ class LoginPageState extends State<LoginPage> {
 
   void submit() {
     final form = formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      bloc.doLogin(email, password);
-    }
+    // if (form.validate()) {
+    //   form.save();
+    //   bloc.doLogin(email, password);
+    // }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DashboardPage()),
+    );
   }
 
   Widget buildErrorWidget(String error) {
@@ -51,28 +58,24 @@ class LoginPageState extends State<LoginPage> {
 
   Widget loginButton() {
     return Container(
-      width: double.infinity,
-      child: RaisedButton(
-        padding: EdgeInsets.all(17.0),
-        onPressed: () {
-          submit();
-        },
-        child: Text(
-          "Masuk",
-          style: TextStyle(
-            color: Color(Constants.appMainColor),
-            fontSize: 18,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(5.0),
-            side: BorderSide(color: Color(Constants.appMainColor))),
-      ),
-      decoration:
-          BoxDecoration(shape: BoxShape.circle, color: Color(0xFFF2F3F7)),
-    );
+        width: double.infinity,
+        child: TextButton(
+            // padding: EdgeInsets.all(17.0),
+            onPressed: () {
+              submit();
+            },
+            child: Text(
+              "Masuk",
+              style: TextStyle(
+                color: Color(Constants.appMainColor),
+                fontSize: 18,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            style: TextButton.styleFrom(
+                side: BorderSide(color: Color(Constants.appMainColor)),
+                primary: Colors.white,
+                padding: EdgeInsets.all(15))));
   }
 
   @override
@@ -98,9 +101,8 @@ class LoginPageState extends State<LoginPage> {
                 width: SizeUtil.screenWidth,
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.symmetric(vertical: 150),
-                child: Card(
+                child: Container(
                   color: Colors.white,
-                  elevation: 4,
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                     width: SizeUtil.screenWidth,
@@ -108,8 +110,11 @@ class LoginPageState extends State<LoginPage> {
                       children: [
                         Image.asset(
                           "assets/images/dummy_launcher.png",
-                          height: 150,
-                          width: 150,
+                          height: defaultSize * 15,
+                          width: defaultSize * 15,
+                        ),
+                        SizedBox(
+                          height: 15,
                         ),
                         TextFormField(
                           showCursor: true,
@@ -130,11 +135,7 @@ class LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             filled: true,
-                            prefixIcon: Icon(
-                              FeatherIcons.user,
-                              color: Color(0xFF666666),
-                            ),
-                            fillColor: Color(0xFFF2F3F5),
+                            fillColor: Colors.white,
                             hintStyle: TextStyle(
                               color: Color(0xFF666666),
                             ),
@@ -164,10 +165,6 @@ class LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             filled: true,
-                            prefixIcon: Icon(
-                              FeatherIcons.lock,
-                              color: Color(0xFF666666),
-                            ),
                             suffixIcon: GestureDetector(
                               onTap: toggle,
                               child: Icon(
@@ -177,7 +174,7 @@ class LoginPageState extends State<LoginPage> {
                                 color: Color(0xFF666666),
                               ),
                             ),
-                            fillColor: Color(0xFFF2F3F5),
+                            fillColor: Colors.white,
                             hintStyle: TextStyle(
                               color: Color(0xFF666666),
                             ),
@@ -252,7 +249,7 @@ class LoginPageState extends State<LoginPage> {
                                 child: Text(
                                   "Daftar",
                                   style: TextStyle(
-                                    color: Color(0xFF6d4c41),
+                                    color: Color(Constants.appMainColor),
                                     fontStyle: FontStyle.normal,
                                   ),
                                 ),

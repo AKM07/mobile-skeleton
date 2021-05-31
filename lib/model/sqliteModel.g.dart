@@ -440,21 +440,21 @@ class Account {
     ];
   }
 
-  static Future<List<Account>> fromWebUrl(String url,
-      {Map<String, String> headers}) async {
-    try {
-      final response = await http.get(url, headers: headers);
-      return await fromJson(response.body);
-    } catch (e) {
-      print(
-          'SQFENTITY ERROR Account.fromWebUrl: ErrorMessage: ${e.toString()}');
-      return null;
-    }
-  }
+  // static Future<List<Account>> fromWebUrl(String url,
+  //     {Map<String, String> headers}) async {
+  //   try {
+  //     final response = await http.get(url, headers: headers);
+  //     return await fromJson(response.body);
+  //   } catch (e) {
+  //     print(
+  //         'SQFENTITY ERROR Account.fromWebUrl: ErrorMessage: ${e.toString()}');
+  //     return null;
+  //   }
+  // }
 
-  Future<http.Response> postUrl(String url, {Map<String, String> headers}) {
-    return http.post(url, headers: headers, body: toJson());
-  }
+  // Future<http.Response> postUrl(String url, {Map<String, String> headers}) {
+  //   return http.post(url, headers: headers, body: toJson());
+  // }
 
   static Future<List<Account>> fromJson(String jsonBody) async {
     final Iterable list = await json.decode(jsonBody) as Iterable;
@@ -1171,10 +1171,16 @@ class AccountFilterBuilder extends SearchCriteria {
         } else {
           switch (param.dbType) {
             case DbType.bool:
-              param.value =
-                  param.value == null ? null : param.value == true ? 1 : 0;
-              param.value2 =
-                  param.value2 == null ? null : param.value2 == true ? 1 : 0;
+              param.value = param.value == null
+                  ? null
+                  : param.value == true
+                      ? 1
+                      : 0;
+              param.value2 = param.value2 == null
+                  ? null
+                  : param.value2 == true
+                      ? 1
+                      : 0;
               break;
             case DbType.date:
             case DbType.datetime:
